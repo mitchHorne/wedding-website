@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
-import Main from "./Main";
+import Main from "./main/Main";
 import Dashboard from "./Dashboard";
 import "./index.css";
 import { theme } from "./theme";
