@@ -1,9 +1,10 @@
 export const theme = {
   colors: {
     primary: "#ddd",
-    secondary: "#e5c100",
     backgroundPrimary: "#fff",
-    backgroundSecondary: "#36454f"
+    backgroundSecondary: "#36454f",
+    darkGold: "#B58F51",
+    lightGold: "#FBEA90"
   },
   fonts: {
     primary: "font-family: 'Open Sans Condensed', sans-serif",
