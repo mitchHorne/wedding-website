@@ -56,7 +56,7 @@ const HeaderAccent = styled.img`
   width: 43rem;
 `;
 
-const SaveDate = styled.div`
+const SecondaryText = styled.div`
   align-self: flex-start;
   color: ${props => props.theme.colors.darkGold};
   font-size: 2.5rem;
@@ -87,9 +87,9 @@ export const Header = () => (
         <HeaderAccent src={headerContainer} alt="" />
       </Heading>
 
-      <SaveDate>
+      <SecondaryText>
         <h1>We're tying the knot!!</h1>
-      </SaveDate>
+      </SecondaryText>
     </Cover>
   </Container>
 );
