@@ -5,7 +5,6 @@ import { Header } from "./Header";
 
 const MainBody = styled.div`
   font-size: 16px;
-  padding: 2em;
 
   ${props => props.theme.fonts.primary}
 `;
