@@ -35,7 +35,14 @@ const RsvpButton = styled.div`
     color: ${props => props.theme.colors.darkGold};
     font-size: 3rem;
     position: relative;
+    transition: all 0.4s;
     z-index: 2;
+
+    :hover {
+      background: ${props => props.theme.colors.darkGold};
+      color: white;
+      cursor: pointer;
+    }
   }
 
   img {
