@@ -11,30 +11,42 @@ const Container = styled.div`
   box-shadow: 0 0 15px #333;
   display: flex;
   flex-direction: column;
-  font-size: 2rem;
-  padding: 1rem 2rem 2rem;
+  padding: 1rem 0rem 2rem;
+
+  @media only screen and (min-width: 800px) {
+    font-size: 2rem;
+    padding: 1rem 2rem 2rem;
+  }
 
   h1 {
     color: ${props => props.theme.colors.darkGold};
+    font-size: 3rem;
+    margin: 0;
 
-    ${props => props.theme.fonts.accent}
+    ${props => props.theme.fonts.accent};
+
+    @media only screen and (min-width: 800px) {
+      font-size: 3em;
+    }
   }
 `;
 
 const AboutContent = styled.div`
   display: flex;
-  justify-content: space-around;
-  padding: 2rem 1rem;
+  flex-direction: ${props => (props.reverse ? "column-reverse" : "column")};
+  padding: 2rem 0rem;
   width: 100%;
 
-  h1,
-  ul {
-    margin: 0;
+  @media only screen and (min-width: 800px) {
+    flex-direction: row;
+    padding: 2rem 1rem;
+    justify-content: space-around;
   }
 
   ul {
     color: ${props => props.theme.colors.primary};
     list-style: none;
+    margin: 0;
   }
 
   p {
@@ -49,32 +61,67 @@ const ImageContainer = styled.div`
   position: relative;
 
   img {
-    height: 425px;
-    width: 325px;
+    height: 300px;
+    width: 250px;
+
+    @media only screen and (min-width: 800px) {
+      height: 425px;
+      width: 325px;
+    }
   }
 
   img.frame {
-    height: 440px;
+    height: 308px;
     position: absolute;
-    top: -9px;
-    width: 333px;
+    top: -4px;
+    width: 256px;
+
+    @media only screen and (min-width: 800px) {
+      height: 440px;
+      position: absolute;
+      top: -9px;
+      width: 333px;
+    }
   }
 `;
 
 const Desctiption = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
 
-  ${props => (props.left ? "align-items: flex-end;" : "")}
+  @media only screen and (min-width: 800px) {
+    flex-grow: 1;
+
+    ${props => (props.left ? "align-items: flex-end;" : "")}
+  }
 
   h1 {
+    font-size: 2.5em;
+    margin-top: 1rem;
+    padding: 0 1rem;
     position: relative;
-    left: ${props => (props.left ? "-16rem" : "2rem")};
+    text-align: center;
+
+    @media only screen and (min-width: 800px) {
+      font-size: 2em;
+      left: ${props => (props.left ? "-16rem" : "2rem")};
+      margin: 0;
+      text-align: left;
+    }
   }
 
   ul {
+    padding-left: 1rem;
+
     li {
+      display: flex;
+      padding-right: 0.5rem;
+      padding-top: 0.5rem;
+
+      @media only screen and (min-width: 800px) {
+        padding: 0;
+      }
+
       i {
         color: ${props => props.theme.colors.darkGold};
         margin-right: 1rem;
@@ -89,7 +136,7 @@ const ListItem = props => {
   return (
     <li>
       <i className={`fa fa-${gender}`}></i>
-      {children}
+      <div>{children}</div>
     </li>
   );
 };
@@ -119,7 +166,7 @@ export const About = () => (
         </ul>
       </Desctiption>
     </AboutContent>
-    <AboutContent>
+    <AboutContent reverse>
       <Desctiption left>
         <h1>Mitchell Horne</h1>
         <ul>

@@ -7,7 +7,7 @@ import mainImage from "../assets/main.jpg";
 const Container = styled.div`
   align-items: center;
   background: no-repeat url(${props => props.mainImage});
-  background-size: 100%;
+  background-size: 100% 100%;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -42,25 +42,57 @@ const Heading = styled.div`
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 6em;
+    display: none;
+    font-size: 6rem;
     position: absolute;
     top: 6rem;
 
     ${props => props.theme.fonts.accent};
+
+    @media only screen and (min-width: 800px) {
+      display: block;
+    }
+  }
+
+  .mobile {
+    display: block;
+
+    @media only screen and (min-width: 800px) {
+      display: none;
+    }
+
+    h1 {
+      display: block;
+      font-size: 5rem;
+      margin: 0;
+      position: relative;
+      text-align: center;
+      top: 0;
+    }
   }
 `;
 
 const HeaderAccent = styled.img`
-  position: absolute;
-  top: 0em;
-  width: 43rem;
+  display: none;
+
+  @media only screen and (min-width: 800px) {
+    display: block;
+    position: absolute;
+    top: 0em;
+    width: 43rem;
+  }
 `;
 
 const SecondaryText = styled.div`
-  align-self: flex-start;
   color: ${props => props.theme.colors.darkGold};
-  font-size: 2.5rem;
-  margin-left: 3rem;
+  font-size: 1.5rem;
+  text-align: center;
+
+  @media only screen and (min-width: 800px) {
+    align-self: flex-start;
+    font-size: 2.5rem;
+    margin-left: 3rem;
+  }
 
   ${props => props.theme.fonts.accent};
 
@@ -84,6 +116,11 @@ export const Header = () => (
     <Cover>
       <Heading>
         <h1>Nicoline & Mitch</h1>
+        <div className="mobile">
+          <h1>Nicoline</h1>
+          <h1>&</h1>
+          <h1>Mitch</h1>
+        </div>
         <HeaderAccent src={headerContainer} alt="" />
       </Heading>
 
