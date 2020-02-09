@@ -14,15 +14,46 @@ const MainBody = styled.div`
 `;
 
 class Main extends Component {
-  state = { isLoggedIn: false };
+  state = { isLoggedIn: false, pin: "" };
 
   componentDidMount() {
+    cookie.remove("user");
     this.setState({ isLoggedIn: cookie.get("user") });
   }
 
   renderLogin = loggedIn => {
-    if (!loggedIn) return <Login />;
+    const { pin } = this.state;
+    if (!loggedIn)
+      return <Login handleChange={this.handleLoginChange} value={pin} />;
     return;
+  };
+
+  handleLoginChange = event => {
+    const changeType =
+      this.state.pin.length < event.target.value.length ? "add" : "remove";
+
+    if (changeType === "add") {
+      const char = event.target.value[event.target.value.length - 1];
+      if (!isNaN(char)) {
+        this.setState({ ...this.state, pin: event.target.value });
+        if (event.target.value.length === 4)
+          return this.login(event.target.value);
+      }
+      return;
+    }
+
+    if (changeType === "remove") {
+      this.setState({ ...this.state, pin: event.target.value });
+    }
+
+    return;
+  };
+
+  login = pin => {
+    console.log("login");
+    console.log(pin);
+    cookie.set("user", pin);
+    this.setState({ isLoggedIn: cookie.get("user") });
   };
 
   render() {

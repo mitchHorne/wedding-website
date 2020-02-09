@@ -46,7 +46,11 @@ export const Login = props => (
   <Container>
     <Modal>
       <h1>Enter your Pin</h1>
-      <TextBox placeholder="PIN" />
+      <TextBox
+        onChange={props.handleChange}
+        placeholder="PIN"
+        value={props.value}
+      />
     </Modal>
   </Container>
 );
