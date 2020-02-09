@@ -160,9 +160,6 @@ export const About = () => (
           <ListItem gender="female">
             Is human, but identifies as a mermaid.
           </ListItem>
-          <ListItem gender="female">
-            Has terrible taste in men, but great tastes in future husbands.
-          </ListItem>
         </ul>
       </Desctiption>
     </AboutContent>
@@ -183,7 +180,6 @@ export const About = () => (
           <ListItem gender="male">
             Best thing for Nicoline - EVER (Her own words).
           </ListItem>
-          <ListItem gender="male">Is a strong independent woman.</ListItem>
         </ul>
       </Desctiption>
       <ImageContainer>
