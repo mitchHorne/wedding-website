@@ -49,11 +49,17 @@ class Main extends Component {
     return;
   };
 
-  login = pin => {
-    console.log("login");
-    console.log(pin);
-    cookie.set("user", pin);
-    this.setState({ isLoggedIn: cookie.get("user") });
+  login = async pin => {
+    const { url } = this.props;
+
+    try {
+      const res = await fetch(`${url}/getGuests/${pin}`);
+      const guest = await res.json();
+      cookie.set("user", guest);
+      this.setState({ isLoggedIn: cookie.get("user") });
+    } catch (err) {
+      console.error("Login Failed");
+    }
   };
 
   render() {

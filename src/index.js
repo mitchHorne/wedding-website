@@ -8,12 +8,14 @@ import Dashboard from "./Dashboard";
 import "./index.css";
 import { theme } from "./theme";
 
+const serverUrl = "http://localhost:3001";
+
 const Router = () => (
   <BrowserRouter>
     <ThemeProvider theme={theme}>
       <Switch>
         <Route exact path="/">
-          <Main />
+          <Main url={serverUrl} />
         </Route>
         <Route path="/adminDash">
           <Dashboard />
