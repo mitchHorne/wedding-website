@@ -3,6 +3,7 @@ import styled from "styled-components";
 import cookie from "js-cookie";
 
 import { Login } from "./Login";
+import { Loading } from "./Loader";
 import { Header } from "./Header";
 import { SaveDate } from "./SaveDate";
 import { About } from "./About";
@@ -14,12 +15,17 @@ const MainBody = styled.div`
 `;
 
 class Main extends Component {
-  state = { isLoggedIn: false, pin: "" };
+  state = { isLoading: true, isLoggedIn: false, pin: "" };
 
   componentDidMount() {
     cookie.remove("user");
-    this.setState({ isLoggedIn: cookie.get("user") });
+    this.setState({ isLoading: false, isLoggedIn: cookie.get("user") });
   }
+
+  loading = isLoading => {
+    if (isLoading) return <Loading />;
+    return;
+  };
 
   renderLogin = loggedIn => {
     const { pin } = this.state;
@@ -51,23 +57,30 @@ class Main extends Component {
 
   login = async pin => {
     const { url } = this.props;
+    this.setState({ ...this.state, isLoading: true, isLoggedIn: true });
 
     try {
       const res = await fetch(`${url}/getGuests/${pin}`);
       const guest = await res.json();
       cookie.set("user", guest);
-      this.setState({ isLoggedIn: cookie.get("user") });
+      this.setState({
+        ...this.state,
+        isLoading: false,
+        isLoggedIn: cookie.get("user")
+      });
     } catch (err) {
+      this.setState({ ...this.state, isLoading: false, isLoggedIn: false });
       console.error("Login Failed");
     }
   };
 
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoading, isLoggedIn } = this.state;
 
     return (
       <MainBody>
         {this.renderLogin(isLoggedIn)}
+        {this.loading(isLoading)}
         <Header />
         <SaveDate />
         <About />
