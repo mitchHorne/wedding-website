@@ -19,7 +19,8 @@ class Main extends Component {
 
   componentDidMount() {
     cookie.remove("user");
-    this.setState({ isLoading: false, isLoggedIn: cookie.get("user") });
+    this.setState({ isLoading: false, isLoggedIn: true });
+    // this.setState({ isLoading: false, isLoggedIn: cookie.get("user") });
   }
 
   loading = isLoading => {
