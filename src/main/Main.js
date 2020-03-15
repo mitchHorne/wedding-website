@@ -7,6 +7,7 @@ import { Loading } from "./Loader";
 import { Header } from "./Header";
 import { SaveDate } from "./SaveDate";
 import { About } from "./About";
+import { Map } from "./Map";
 
 const MainBody = styled.div`
   font-size: 16px;
@@ -18,9 +19,8 @@ class Main extends Component {
   state = { isLoading: true, isLoggedIn: false, pin: "" };
 
   componentDidMount() {
-    cookie.remove("user");
-    this.setState({ isLoading: false, isLoggedIn: true });
-    // this.setState({ isLoading: false, isLoggedIn: cookie.get("user") });
+    // this.setState({ isLoading: false, isLoggedIn: true });
+    this.setState({ isLoading: false, isLoggedIn: cookie.get("user") });
   }
 
   loading = isLoading => {
@@ -85,6 +85,7 @@ class Main extends Component {
         <Header />
         <SaveDate />
         <About />
+        <Map />
       </MainBody>
     );
   }

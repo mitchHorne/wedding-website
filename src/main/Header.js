@@ -7,16 +7,22 @@ import mainImage from "../assets/main.jpg";
 const Container = styled.div`
   align-items: center;
   background: no-repeat url(${props => props.mainImage});
-  background-size: 100% 100%;
+  background-position: center;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100%;
+
+  @media only screen and (min-width: 1065px) {
+    background-size: 100%;
+    background-position: top;
+  }
 `;
 
 const Cover = styled.div`
   align-items: center;
-  background: rgba(90, 90, 90, 0.85);
+  background: rgba(90, 90, 90, 0.65);
   display: flex;
   flex-direction: column;
   height: 100vh;
