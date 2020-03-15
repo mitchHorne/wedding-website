@@ -7,6 +7,12 @@ const Contaienr = styled.div`
   flex-direction: column;
   font-size: 2rem;
   padding: 1rem 0 3em;
+  width: 100%;
+
+  i {
+    color: ${props => props.theme.colors.darkGold};
+    margin-right: 1rem;
+  }
 
   h1 {
     color: ${props => props.theme.colors.darkGold};
@@ -33,6 +39,16 @@ const Contaienr = styled.div`
       color: ${props => props.theme.colors.darkGold};
     }
   }
+
+  div {
+    h2 {
+      color: ${props => props.theme.colors.darkGold};
+      margin: 2rem 0 1rem;
+      text-align: center;
+
+      ${props => props.theme.fonts.accent};
+    }
+  }
 `;
 
 const MapContainer = styled.div`
@@ -40,6 +56,33 @@ const MapContainer = styled.div`
 
   @media only screen and (min-width: 800px) {
     width: 50%;
+  }
+`;
+
+const AccomodationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const Accomodation = styled.div`
+  align-items: space-around;
+  display: flex;
+  flex-direction: column;
+  padding: 0 3rem;
+
+  @media only screen and (min-width: 800px) {
+    flex-direction: row;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    p {
+      margin: 0;
+    }
   }
 `;
 
@@ -65,7 +108,76 @@ export const Map = () => {
       <a href="https://www.pontdeval.co.za/">
         <h2>Pont de Val</h2>
       </a>
+      <div>
+        <p>
+          <i className="fa fa-map-marker fa-fw"></i>
+          Address: 212 Boundary Rd, Cote de Val, Parys
+        </p>
+        <p>
+          <i className="fa fa-phone fa-fw"></i>
+          Contact: 016 004 0019
+        </p>
+      </div>
       <IFrame />
+      <AccomodationContainer>
+        <h2>Accomodation near Pont de Val</h2>
+        <Accomodation>
+          <div>
+            <p>
+              <i className="fa fa-hotel fa-fw"></i>
+              Vender 1
+            </p>
+            <p>
+              <i className="fa fa-map-marker fa-fw"></i>
+              Address thing
+            </p>
+            <p>
+              <i className="fa fa-road fa-fw"></i>
+              Distance: 10km Away
+            </p>
+            <p>
+              <i className="fa fa-globe fa-fw"></i>
+              Link to place
+            </p>
+          </div>
+          <div>
+            <p>
+              <i className="fa fa-hotel fa-fw"></i>
+              Vender 1
+            </p>
+            <p>
+              <i className="fa fa-map-marker fa-fw"></i>
+              Address thing
+            </p>
+            <p>
+              <i className="fa fa-road fa-fw"></i>
+              Distance: 10km Away
+            </p>
+            <p>
+              <i className="fa fa-globe fa-fw"></i>
+              Link to place
+            </p>
+          </div>
+          <div>
+            <p>
+              <i className="fa fa-hotel fa-fw"></i>
+              Vender 1
+            </p>
+            <p>
+              <i className="fa fa-map-marker fa-fw"></i>
+              Address thing
+            </p>
+            <p>
+              <i className="fa fa-road fa-fw"></i>
+              Distance: 10km Away
+            </p>
+            <p>
+              <i className="fa fa-globe fa-fw"></i>
+              Link to place
+            </p>
+          </div>
+        </Accomodation>
+      </AccomodationContainer>
     </Contaienr>
   );
 };
