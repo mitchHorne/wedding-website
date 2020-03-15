@@ -85,12 +85,12 @@ const RsvpButton = styled.div`
 } 
 `;
 
-export const SaveDate = () => (
+export const SaveDate = ({ toRsvp }) => (
   <Container>
     <h1>31 / 10 / 2020</h1>
     <h1>Save The Date!</h1>
     <RsvpButton>
-      <button>RSVP Now</button>
+      <button onClick={() => toRsvp()}>RSVP Now</button>
       <img src={Arrows} alt="" />
       <img className="mobile" src={MobileArrows} alt="" />
     </RsvpButton>

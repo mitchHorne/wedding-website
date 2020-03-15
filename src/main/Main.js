@@ -8,6 +8,7 @@ import { Header } from "./Header";
 import { SaveDate } from "./SaveDate";
 import { About } from "./About";
 import { Map } from "./Map";
+import { RSVP } from "./RSVP";
 
 const MainBody = styled.div`
   font-size: 16px;
@@ -15,12 +16,36 @@ const MainBody = styled.div`
   ${props => props.theme.fonts.primary}
 `;
 
+const renderBody = ({ associates, backToHome, rsvp, self, toRsvp }) => {
+  if (rsvp)
+    return <RSVP associates={associates} backToHome={backToHome} self={self} />;
+  return (
+    <div>
+      <Header />
+      <SaveDate toRsvp={toRsvp} />
+      <About />
+      <Map />
+    </div>
+  );
+};
+
 class Main extends Component {
-  state = { isLoading: true, isLoggedIn: false, pin: "" };
+  state = {
+    associates: [],
+    isLoading: true,
+    isLoggedIn: false,
+    pin: "",
+    rsvp: false,
+    self: {}
+  };
 
   componentDidMount() {
-    // this.setState({ isLoading: false, isLoggedIn: true });
-    this.setState({ isLoading: false, isLoggedIn: cookie.get("user") });
+    const guest = cookie.get("user");
+
+    if (guest) {
+      const data = JSON.parse(guest);
+      this.login(data.self.id);
+    }
   }
 
   loading = isLoading => {
@@ -66,8 +91,10 @@ class Main extends Component {
       cookie.set("user", guest);
       this.setState({
         ...this.state,
+        associates: guest.associates,
         isLoading: false,
-        isLoggedIn: cookie.get("user")
+        isLoggedIn: true,
+        self: guest.self
       });
     } catch (err) {
       this.setState({ ...this.state, isLoading: false, isLoggedIn: false });
@@ -75,17 +102,31 @@ class Main extends Component {
     }
   };
 
+  toRsvp = () => {
+    this.setState({
+      ...this.state,
+      rsvp: true
+    });
+  };
+
+  backToHome = () => {
+    this.setState({
+      ...this.state,
+      rsvp: false
+    });
+  };
+
   render() {
-    const { isLoading, isLoggedIn } = this.state;
+    const { backToHome, loading, renderLogin, toRsvp } = this;
+    const { associates, isLoading, isLoggedIn, rsvp, self } = this.state;
+
+    const renderBodyParams = { associates, backToHome, rsvp, self, toRsvp };
 
     return (
       <MainBody>
-        {this.renderLogin(isLoggedIn)}
-        {this.loading(isLoading)}
-        <Header />
-        <SaveDate />
-        <About />
-        <Map />
+        {renderLogin(isLoggedIn)}
+        {loading(isLoading)}
+        {renderBody(renderBodyParams)}
       </MainBody>
     );
   }
