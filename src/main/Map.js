@@ -11,12 +11,26 @@ const Contaienr = styled.div`
   h1 {
     color: ${props => props.theme.colors.darkGold};
     font-size: 3rem;
-    margin: 0 0 1rem;
+    margin: 0;
 
     ${props => props.theme.fonts.accent};
 
     @media only screen and (min-width: 800px) {
       font-size: 3em;
+    }
+  }
+
+  a {
+    transition: 0.2s all;
+
+    h2 {
+      margin: 0 0 1rem;
+
+      ${props => props.theme.fonts.accent};
+    }
+
+    :hover {
+      color: ${props => props.theme.colors.darkGold};
     }
   }
 `;
@@ -48,6 +62,9 @@ export const Map = () => {
   return (
     <Contaienr>
       <h1>Where?</h1>
+      <a href="https://www.pontdeval.co.za/">
+        <h2>Pont de Val</h2>
+      </a>
       <IFrame />
     </Contaienr>
   );
