@@ -22,6 +22,7 @@ const renderBody = ({
   backToHome,
   rsvp,
   self,
+  setPlusOne,
   toRsvp,
   unAttend,
 }) => {
@@ -32,6 +33,7 @@ const renderBody = ({
         attend={attend}
         backToHome={backToHome}
         self={self}
+        setPlusOne={setPlusOne}
         unAttend={unAttend}
       />
     );
@@ -149,7 +151,7 @@ class Main extends Component {
 
       const success = await res.json();
 
-      if (!success) throw Error("Failed in unRSVP call");
+      if (!success) throw Error("Failed in RSVP call");
 
       return true;
     } catch (err) {
@@ -183,6 +185,29 @@ class Main extends Component {
     }
   };
 
+  setPlusOne = async (id, plusOne) => {
+    const { url } = this.props;
+    this.startLoading();
+
+    try {
+      const body = JSON.stringify({ id, plusOne });
+      const options = { method: "POST", body };
+      const res = await fetch(`${url}/plusOne`, options);
+
+      if (res.status !== 200) throw Error("Failed in plusOne call");
+
+      const success = await res.json();
+
+      if (!success) throw Error("Failed in plusOne call");
+
+      return true;
+    } catch (err) {
+      console.log(err);
+    } finally {
+      this.stopLoading();
+    }
+  };
+
   backToHome = () => {
     this.setState({
       ...this.state,
@@ -191,7 +216,15 @@ class Main extends Component {
   };
 
   render() {
-    const { attend, backToHome, loading, renderLogin, toRsvp, unAttend } = this;
+    const {
+      attend,
+      backToHome,
+      loading,
+      renderLogin,
+      toRsvp,
+      setPlusOne,
+      unAttend,
+    } = this;
     const { associates, isLoading, isLoggedIn, rsvp, self } = this.state;
 
     const renderBodyParams = {
@@ -200,6 +233,7 @@ class Main extends Component {
       backToHome,
       rsvp,
       self,
+      setPlusOne,
       toRsvp,
       unAttend,
     };

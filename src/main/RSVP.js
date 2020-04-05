@@ -154,46 +154,46 @@ const renderAssociates = (associates, changeAssociates) => {
 const renderPlusOne = (plusOne, changePlusOne) => {
   if (!plusOne) return;
 
-  if (!plusOne.firstName || !plusOne.lastName)
-    return (
-      <PlusOneContainer>
-        <input
-          onChange={(e) => changePlusOne(e.target.value, "firstName")}
-          placeholder="First name"
-          type="text"
-          value={plusOne.firstName}
-        />
-        <input
-          onChange={(e) => changePlusOne(e.target.value, "lastName")}
-          placeholder="Last name"
-          type="text"
-          value={plusOne.lastName}
-        />
-      </PlusOneContainer>
-    );
-
   return (
     <PlusOneContainer>
       <input
-        onChange={(e) => changePlusOne(e.target.value, "firstName")}
+        onChange={(e) => changePlusOne(e.target.value, "firstname")}
         placeholder="First name"
         type="text"
-        value={plusOne.firstName}
+        value={plusOne.firstname}
       />
       <input
-        onChange={(e) => changePlusOne(e.target.value, "lastName")}
+        onChange={(e) => changePlusOne(e.target.value, "lastname")}
         placeholder="Last name"
         type="text"
-        value={plusOne.lastName}
+        value={plusOne.lastname}
       />
-      <div>
-        <AttendingButton
-          active={plusOne.coming}
-          onClick={() => changePlusOne(!plusOne.coming, "coming")}
-        >
-          {plusOne.coming ? "Attending" : "Not Attending"}
-        </AttendingButton>
-      </div>
+      {!plusOne.firstname || !plusOne.lastname ? (
+        ""
+      ) : (
+        <div>
+          <AttendingButton
+            active={plusOne.coming}
+            onClick={() => changePlusOne(true, "coming")}
+          >
+            Attending
+          </AttendingButton>
+          <AttendingButton
+            active={!plusOne.coming}
+            onClick={() => changePlusOne(false, "coming")}
+          >
+            Not Attending
+          </AttendingButton>
+        </div>
+      )}
+      {!plusOne.firstname || !plusOne.lastname ? (
+        ""
+      ) : (
+        <div>
+          *If you should change your plus one's first or last name, be sure to
+          click the attending button again to update it
+        </div>
+      )}
     </PlusOneContainer>
   );
 };
@@ -266,10 +266,16 @@ export class RSVP extends Component {
     }
   };
 
-  changePlusOne = (value, changeType) => {
+  changePlusOne = async (value, changeType) => {
+    const { self, setPlusOne } = this.props;
     const plusOne = { ...this.state.plusOne };
     plusOne[changeType] = value;
-    this.setState({ ...this.state, plusOne });
+
+    if (changeType !== "coming")
+      return this.setState({ ...this.state, plusOne });
+
+    const success = await setPlusOne(self.id, plusOne);
+    if (success) this.setState({ ...this.state, plusOne });
   };
 
   render() {
