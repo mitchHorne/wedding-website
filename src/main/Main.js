@@ -13,7 +13,7 @@ import { RSVP } from "./RSVP";
 const MainBody = styled.div`
   font-size: 16px;
 
-  ${props => props.theme.fonts.primary}
+  ${(props) => props.theme.fonts.primary}
 `;
 
 const renderBody = ({ associates, backToHome, rsvp, self, toRsvp }) => {
@@ -36,8 +36,12 @@ class Main extends Component {
     isLoggedIn: false,
     pin: "",
     rsvp: false,
-    self: {}
+    self: {},
   };
+
+  stopLoading = () => this.setState({ ...this.state, isLoading: false });
+
+  startLoading = () => this.setState({ ...this.state, isLoading: true });
 
   componentDidMount() {
     const guest = cookie.get("user");
@@ -48,19 +52,26 @@ class Main extends Component {
     }
   }
 
-  loading = isLoading => {
+  loading = (isLoading) => {
     if (isLoading) return <Loading />;
     return;
   };
 
-  renderLogin = loggedIn => {
+  renderLogin = (loggedIn) => {
     const { pin } = this.state;
+    const loadUtils = { stop: this.stopLoading, start: this.startLoading };
     if (!loggedIn)
-      return <Login handleChange={this.handleLoginChange} value={pin} />;
+      return (
+        <Login
+          handleChange={this.handleLoginChange}
+          load={loadUtils}
+          value={pin}
+        />
+      );
     return;
   };
 
-  handleLoginChange = event => {
+  handleLoginChange = (event) => {
     const changeType =
       this.state.pin.length < event.target.value.length ? "add" : "remove";
 
@@ -81,7 +92,7 @@ class Main extends Component {
     return;
   };
 
-  login = async pin => {
+  login = async (pin) => {
     const { url } = this.props;
     this.setState({ ...this.state, isLoading: true, isLoggedIn: true });
 
@@ -94,7 +105,7 @@ class Main extends Component {
         associates: guest.associates,
         isLoading: false,
         isLoggedIn: true,
-        self: guest.self
+        self: guest.self,
       });
     } catch (err) {
       this.setState({ ...this.state, isLoading: false, isLoggedIn: false });
@@ -105,14 +116,14 @@ class Main extends Component {
   toRsvp = () => {
     this.setState({
       ...this.state,
-      rsvp: true
+      rsvp: true,
     });
   };
 
   backToHome = () => {
     this.setState({
       ...this.state,
-      rsvp: false
+      rsvp: false,
     });
   };
 

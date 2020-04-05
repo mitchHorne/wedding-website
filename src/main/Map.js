@@ -10,16 +10,16 @@ const Contaienr = styled.div`
   width: 100%;
 
   i {
-    color: ${props => props.theme.colors.darkGold};
+    color: ${(props) => props.theme.colors.darkGold};
     margin-right: 1rem;
   }
 
   h1 {
-    color: ${props => props.theme.colors.darkGold};
+    color: ${(props) => props.theme.colors.darkGold};
     font-size: 3rem;
     margin: 0;
 
-    ${props => props.theme.fonts.accent};
+    ${(props) => props.theme.fonts.accent};
 
     @media only screen and (min-width: 800px) {
       font-size: 3em;
@@ -32,21 +32,21 @@ const Contaienr = styled.div`
     h2 {
       margin: 0 0 1rem;
 
-      ${props => props.theme.fonts.accent};
+      ${(props) => props.theme.fonts.accent};
     }
 
     :hover {
-      color: ${props => props.theme.colors.darkGold};
+      color: ${(props) => props.theme.colors.darkGold};
     }
   }
 
   div {
     h2 {
-      color: ${props => props.theme.colors.darkGold};
+      color: ${(props) => props.theme.colors.darkGold};
       margin: 2rem 0 1rem;
       text-align: center;
 
-      ${props => props.theme.fonts.accent};
+      ${(props) => props.theme.fonts.accent};
     }
   }
 `;
@@ -59,32 +59,32 @@ const MapContainer = styled.div`
   }
 `;
 
-const AccomodationContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
+// const AccomodationContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   width: 100%;
+// `;
 
-const Accomodation = styled.div`
-  align-items: space-around;
-  display: flex;
-  flex-direction: column;
-  padding: 0 3rem;
+// const Accomodation = styled.div`
+//   align-items: space-around;
+//   display: flex;
+//   flex-direction: column;
+//   padding: 0 3rem;
 
-  @media only screen and (min-width: 800px) {
-    flex-direction: row;
-  }
+//   @media only screen and (min-width: 800px) {
+//     flex-direction: row;
+//   }
 
-  div {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+//   div {
+//     display: flex;
+//     flex-direction: column;
+//     flex-grow: 1;
 
-    p {
-      margin: 0;
-    }
-  }
-`;
+//     p {
+//       margin: 0;
+//     }
+//   }
+// `;
 
 const IFrame = () => (
   <MapContainer>
@@ -119,7 +119,7 @@ export const Map = () => {
         </p>
       </div>
       <IFrame />
-      <AccomodationContainer>
+      {/* <AccomodationContainer>
         <h2>Accomodation near Pont de Val</h2>
         <Accomodation>
           <div>
@@ -177,7 +177,7 @@ export const Map = () => {
             </p>
           </div>
         </Accomodation>
-      </AccomodationContainer>
+      </AccomodationContainer> */}
     </Contaienr>
   );
 };
