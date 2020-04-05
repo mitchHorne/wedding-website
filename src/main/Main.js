@@ -16,9 +16,25 @@ const MainBody = styled.div`
   ${(props) => props.theme.fonts.primary}
 `;
 
-const renderBody = ({ associates, backToHome, rsvp, self, toRsvp }) => {
+const renderBody = ({
+  associates,
+  attend,
+  backToHome,
+  rsvp,
+  self,
+  toRsvp,
+  unAttend,
+}) => {
   if (rsvp)
-    return <RSVP associates={associates} backToHome={backToHome} self={self} />;
+    return (
+      <RSVP
+        associates={associates}
+        attend={attend}
+        backToHome={backToHome}
+        self={self}
+        unAttend={unAttend}
+      />
+    );
   return (
     <div>
       <Header />
@@ -120,6 +136,53 @@ class Main extends Component {
     });
   };
 
+  attend = async (id) => {
+    const { url } = this.props;
+    this.startLoading();
+
+    try {
+      const body = JSON.stringify({ id });
+      const options = { method: "POST", body };
+      const res = await fetch(`${url}/rsvp`, options);
+
+      if (res.status !== 200) throw Error("Failed in RSVP call");
+
+      const success = await res.json();
+
+      if (!success) throw Error("Failed in unRSVP call");
+
+      return true;
+    } catch (err) {
+      console.log(err);
+      return false;
+    } finally {
+      this.stopLoading();
+    }
+  };
+
+  unAttend = async (id) => {
+    const { url } = this.props;
+    this.startLoading();
+
+    try {
+      const body = JSON.stringify({ id });
+      const options = { method: "POST", body };
+      const res = await fetch(`${url}/unrsvp`, options);
+
+      if (res.status !== 200) throw Error("Failed in unRSVP call");
+
+      const success = await res.json();
+
+      if (!success) throw Error("Failed in unRSVP call");
+
+      return true;
+    } catch (err) {
+      console.log(err);
+    } finally {
+      this.stopLoading();
+    }
+  };
+
   backToHome = () => {
     this.setState({
       ...this.state,
@@ -128,10 +191,18 @@ class Main extends Component {
   };
 
   render() {
-    const { backToHome, loading, renderLogin, toRsvp } = this;
+    const { attend, backToHome, loading, renderLogin, toRsvp, unAttend } = this;
     const { associates, isLoading, isLoggedIn, rsvp, self } = this.state;
 
-    const renderBodyParams = { associates, backToHome, rsvp, self, toRsvp };
+    const renderBodyParams = {
+      associates,
+      attend,
+      backToHome,
+      rsvp,
+      self,
+      toRsvp,
+      unAttend,
+    };
 
     return (
       <MainBody>

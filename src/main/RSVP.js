@@ -127,7 +127,7 @@ const renderAttending = (attending, responded, setAttending) => (
 
 const renderAssociates = (associates, changeAssociates) => {
   const persons = associates.map((person) => (
-    <li>
+    <li key={`ASSOCIATION_${person.id}`}>
       <h2>
         {person.firstName} {person.lastName}
       </h2>
@@ -205,9 +205,6 @@ export class RSVP extends Component {
     const { associates, self } = props;
     const { plusOne, responded, rsvp } = self;
 
-    console.log(associates);
-    console.log(self);
-
     this.state = {
       associates,
       attending: rsvp,
@@ -219,15 +216,36 @@ export class RSVP extends Component {
     };
   }
 
-  setAttending = (coming) =>
-    this.setState({
-      ...this.state,
-      attending: coming,
-      attendingChange: true,
-      responded: true,
-    });
+  setAttending = async (coming) => {
+    const { attend, self, unAttend } = this.props;
 
-  changeAssociates = (change) => {
+    if (coming) {
+      const success = await attend(self.id);
+      if (success)
+        this.setState({
+          ...this.state,
+          attending: coming,
+          attendingChange: true,
+          responded: true,
+        });
+      return;
+    }
+
+    if (!coming) {
+      const success = await unAttend(self.id);
+      if (success)
+        this.setState({
+          ...this.state,
+          attending: coming,
+          attendingChange: true,
+          responded: true,
+        });
+      return;
+    }
+  };
+
+  changeAssociates = async (change) => {
+    const { attend, unAttend } = this.props;
     const { id, coming } = change;
     const associates = this.state.associates.map((person) => {
       if (person.id !== id) return person;
@@ -235,7 +253,17 @@ export class RSVP extends Component {
       return { ...person, responded: true, rsvp: coming };
     });
 
-    this.setState({ ...this.state, associates });
+    if (coming) {
+      const success = await attend(id);
+      if (success) this.setState({ ...this.state, associates });
+      return;
+    }
+
+    if (!coming) {
+      const success = await unAttend(id);
+      if (success) this.setState({ ...this.state, associates });
+      return;
+    }
   };
 
   changePlusOne = (value, changeType) => {
