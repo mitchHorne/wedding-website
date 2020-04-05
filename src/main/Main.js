@@ -132,6 +132,7 @@ class Main extends Component {
   };
 
   toRsvp = () => {
+    window.scrollTo(0, 0);
     this.setState({
       ...this.state,
       rsvp: true,
@@ -209,6 +210,7 @@ class Main extends Component {
   };
 
   backToHome = () => {
+    window.scrollTo(0, 0);
     this.setState({
       ...this.state,
       rsvp: false,

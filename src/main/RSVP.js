@@ -55,16 +55,32 @@ const PlusOneContainer = styled.div`
   padding-bottom: 1em;
   width: 50%;
 
-  input {
-    font-size: 1em;
-    margin-bottom: 0.5em;
-    padding: 10px;
-    width: 100%;
-  }
-
   div {
     display: flex;
     justify-content: center;
+  }
+`;
+
+const InputContainer = styled.div`
+  align-items: center;
+  margin-bottom: 0.5em;
+
+  input {
+    font-size: 1em;
+    margin-left: 0.5em;
+    padding: 10px;
+    flex-grow: 1;
+  }
+`;
+
+const BackIcon = styled.i`
+  color: ${(props) => props.theme.colors.darkGold};
+  left: 20px;
+  position: fixed;
+  top: 20px;
+
+  :hover {
+    cursor: pointer;
   }
 `;
 
@@ -156,18 +172,24 @@ const renderPlusOne = (plusOne, changePlusOne) => {
 
   return (
     <PlusOneContainer>
-      <input
-        onChange={(e) => changePlusOne(e.target.value, "firstname")}
-        placeholder="First name"
-        type="text"
-        value={plusOne.firstname}
-      />
-      <input
-        onChange={(e) => changePlusOne(e.target.value, "lastname")}
-        placeholder="Last name"
-        type="text"
-        value={plusOne.lastname}
-      />
+      <InputContainer>
+        First Name
+        <input
+          onChange={(e) => changePlusOne(e.target.value, "firstname")}
+          placeholder="First name"
+          type="text"
+          value={plusOne.firstname}
+        />
+      </InputContainer>
+      <InputContainer>
+        Last Name
+        <input
+          onChange={(e) => changePlusOne(e.target.value, "lastname")}
+          placeholder="Last name"
+          type="text"
+          value={plusOne.lastname}
+        />
+      </InputContainer>
       {!plusOne.firstname || !plusOne.lastname ? (
         ""
       ) : (
@@ -279,11 +301,16 @@ export class RSVP extends Component {
   };
 
   render() {
-    const { firstName, lastName } = this.props.self;
+    const { backToHome, self } = this.props;
+    const { firstName, lastName } = self;
     const { associates, attending, plusOne, responded } = this.state;
 
     return (
       <Container>
+        <BackIcon
+          className="fa fa-arrow-left"
+          onClick={() => backToHome()}
+        ></BackIcon>
         <h1 style={{ marginBottom: 0 }}>
           Hello {firstName} {lastName}
         </h1>
