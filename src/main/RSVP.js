@@ -318,19 +318,19 @@ export class RSVP extends Component {
         {renderHelloMessage(responded, attending, plusOne)}
         {renderAttending(attending, responded, this.setAttending)}
 
-        {associates.length ? (
-          <p>Feel free to respond for your household as well</p>
-        ) : (
-          ""
-        )}
-        {renderAssociates(associates, this.changeAssociates)}
-
         {plusOne ? (
           <p>Please indicate whether you will be bringing a +1</p>
         ) : (
           ""
         )}
         {renderPlusOne(plusOne, this.changePlusOne)}
+
+        {associates.length ? (
+          <p>Feel free to respond for your household as well</p>
+        ) : (
+          ""
+        )}
+        {renderAssociates(associates, this.changeAssociates)}
       </Container>
     );
   }
