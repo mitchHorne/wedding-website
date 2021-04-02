@@ -9,6 +9,7 @@ import { SaveDate } from "./SaveDate";
 import { Music } from "./Music";
 import { About } from "./About";
 import { Party } from "./BridalParty";
+import { Other } from "./Dress_Donate";
 import { Map } from "./Map";
 import { RSVP } from "./RSVP";
 
@@ -66,6 +67,7 @@ const renderBody = ({
       />
       <About />
       <Party />
+      <Other />
       <Map />
     </div>
   );

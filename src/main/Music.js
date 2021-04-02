@@ -122,13 +122,7 @@ export const Music = ({ addedSongs, addSong, backToHome, songs }) => {
       ></BackIcon>
       <h1>Music Requests</h1>
       {addedSongs?.length > 0 ? (
-        <iframe
-          height="480"
-          frameBorder="0"
-          src="https://giphy.com/embed/e3c7wyesTP68w"
-          title="Funny Gif"
-          width="288"
-        ></iframe>
+        <img src="https://media.giphy.com/media/e3c7wyesTP68w/giphy.gif" />
       ) : (
         <>
           <p>What song will get you on the dancefloor?</p>

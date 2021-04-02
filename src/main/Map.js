@@ -52,6 +52,15 @@ const Contaienr = styled.div`
 
       ${(props) => props.theme.fonts.accent};
     }
+
+    p {
+      font-size: 0.75em;
+      margin: 0;
+      margin-bottom: 0.5em;
+      padding: 0 0.5em;
+      text-align: center;
+      width: 90%;
+    }
   }
 `;
 
@@ -62,33 +71,6 @@ const MapContainer = styled.div`
     width: 50%;
   }
 `;
-
-// const AccomodationContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   width: 100%;
-// `;
-
-// const Accomodation = styled.div`
-//   align-items: space-around;
-//   display: flex;
-//   flex-direction: column;
-//   padding: 0 3rem;
-
-//   @media only screen and (min-width: 800px) {
-//     flex-direction: row;
-//   }
-
-//   div {
-//     display: flex;
-//     flex-direction: column;
-//     flex-grow: 1;
-
-//     p {
-//       margin: 0;
-//     }
-//   }
-// `;
 
 const IFrame = () => (
   <MapContainer>
@@ -119,65 +101,6 @@ export const Map = () => {
         </p>
       </div>
       <IFrame />
-      {/* <AccomodationContainer>
-        <h2>Accomodation near Pont de Val</h2>
-        <Accomodation>
-          <div>
-            <p>
-              <i className="fa fa-hotel fa-fw"></i>
-              Vender 1
-            </p>
-            <p>
-              <i className="fa fa-map-marker fa-fw"></i>
-              Address thing
-            </p>
-            <p>
-              <i className="fa fa-road fa-fw"></i>
-              Distance: 10km Away
-            </p>
-            <p>
-              <i className="fa fa-globe fa-fw"></i>
-              Link to place
-            </p>
-          </div>
-          <div>
-            <p>
-              <i className="fa fa-hotel fa-fw"></i>
-              Vender 1
-            </p>
-            <p>
-              <i className="fa fa-map-marker fa-fw"></i>
-              Address thing
-            </p>
-            <p>
-              <i className="fa fa-road fa-fw"></i>
-              Distance: 10km Away
-            </p>
-            <p>
-              <i className="fa fa-globe fa-fw"></i>
-              Link to place
-            </p>
-          </div>
-          <div>
-            <p>
-              <i className="fa fa-hotel fa-fw"></i>
-              Vender 1
-            </p>
-            <p>
-              <i className="fa fa-map-marker fa-fw"></i>
-              Address thing
-            </p>
-            <p>
-              <i className="fa fa-road fa-fw"></i>
-              Distance: 10km Away
-            </p>
-            <p>
-              <i className="fa fa-globe fa-fw"></i>
-              Link to place
-            </p>
-          </div>
-        </Accomodation>
-      </AccomodationContainer> */}
     </Contaienr>
   );
 };

@@ -27,11 +27,11 @@ const Container = styled.div`
   }
 
   h1 {
-    color: ${props => props.theme.colors.darkGold};
+    color: ${(props) => props.theme.colors.darkGold};
     font-size: 3rem;
     margin: 0;
 
-    ${props => props.theme.fonts.accent};
+    ${(props) => props.theme.fonts.accent};
 
     @media only screen and (min-width: 800px) {
       font-size: 3em;
@@ -41,7 +41,7 @@ const Container = styled.div`
 
 const AboutContent = styled.div`
   display: flex;
-  flex-direction: ${props => (props.reverse ? "column-reverse" : "column")};
+  flex-direction: ${(props) => (props.reverse ? "column-reverse" : "column")};
   padding: 2rem 0rem;
   width: 100%;
 
@@ -52,13 +52,13 @@ const AboutContent = styled.div`
   }
 
   ul {
-    color: ${props => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.primary};
     list-style: none;
     margin: 0;
   }
 
   p {
-    ${props => props.theme.fonts.primary}
+    ${(props) => props.theme.fonts.primary}
   }
 `;
 
@@ -100,7 +100,7 @@ const Desctiption = styled.div`
   @media only screen and (min-width: 800px) {
     flex-grow: 1;
 
-    ${props => (props.left ? "align-items: flex-end;" : "")}
+    ${(props) => (props.left ? "align-items: flex-end;" : "")}
   }
 
   h1 {
@@ -112,7 +112,7 @@ const Desctiption = styled.div`
 
     @media only screen and (min-width: 800px) {
       font-size: 2em;
-      left: ${props => (props.left ? "-16rem" : "2rem")};
+      left: ${(props) => (props.left ? "-16rem" : "2rem")};
       margin: 0;
       text-align: left;
     }
@@ -131,7 +131,7 @@ const Desctiption = styled.div`
       }
 
       i {
-        color: ${props => props.theme.colors.darkGold};
+        color: ${(props) => props.theme.colors.darkGold};
         margin-right: 1rem;
       }
     }
@@ -140,18 +140,18 @@ const Desctiption = styled.div`
 
 const Portrait = styled.img`
   height: 300px;
-  opacity: ${props => (props.show ? 1 : 0)};
+  opacity: ${(props) => (props.show ? 1 : 0)};
   position: absolute;
   transition: all 0.5s;
   width: 250px;
 
-
   @media only screen and (min-width: 800px) {
     height: 425px;
     width: 354px;
+  }
 `;
 
-const ListItem = props => {
+const ListItem = (props) => {
   const { gender, children } = props;
 
   return (

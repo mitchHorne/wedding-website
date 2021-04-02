@@ -30,7 +30,7 @@ const Cover = styled.div`
   left: 0;
   position: absolute;
   top: 0;
-  width: 101%;
+  width: 100%;
 
   @media only screen and (min-width: 800px) {
     width: 100%;
