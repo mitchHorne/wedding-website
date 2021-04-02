@@ -6,7 +6,7 @@ import Arrows from "../assets/arrow.png";
 
 const Container = styled.div`
   align-items: center;
-  color: ${props => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
   display: flex;
   flex-direction: column;
   font-size: 1rem;
@@ -17,13 +17,47 @@ const Container = styled.div`
     font-size: 2rem;
   }
 
-  ${props => props.theme.fonts.primary}
+  ${(props) => props.theme.fonts.primary}
 
   h1 {
-    color: ${props => props.theme.colors.darkGold};
+    color: ${(props) => props.theme.colors.darkGold};
     margin: 0;
 
-    ${props => props.theme.fonts.accent}
+    ${(props) => props.theme.fonts.accent}
+  }
+`;
+
+const ChangeButton = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+
+  @media only screen and (min-width: 800px) {
+    padding: 1rem 2rem;
+  }
+
+  button {
+    background: transparent;
+    border: 2px solid ${(props) => props.theme.colors.darkGold};
+    color: ${(props) => props.theme.colors.darkGold};
+    font-size: 2rem;
+    position: relative;
+    transition: all 0.4s;
+    top: 1rem;
+    z-index: 2;
+
+    @media only screen and (min-width: 800px) {
+      font-size: 3rem;
+      top: 0;
+    }
+
+    :hover {
+      background: ${(props) => props.theme.colors.darkGold};
+      color: white;
+      cursor: pointer;
+    }
   }
 `;
 
@@ -40,8 +74,8 @@ const RsvpButton = styled.div`
 
   button {
     background: transparent;
-    border: 2px solid ${props => props.theme.colors.darkGold};
-    color: ${props => props.theme.colors.darkGold};
+    border: 2px solid ${(props) => props.theme.colors.darkGold};
+    color: ${(props) => props.theme.colors.darkGold};
     font-size: 2rem;
     position: relative;
     transition: all 0.4s;
@@ -54,7 +88,7 @@ const RsvpButton = styled.div`
     }
 
     :hover {
-      background: ${props => props.theme.colors.darkGold};
+      background: ${(props) => props.theme.colors.darkGold};
       color: white;
       cursor: pointer;
     }
@@ -85,14 +119,20 @@ const RsvpButton = styled.div`
 } 
 `;
 
-export const SaveDate = ({ toRsvp }) => (
+export const SaveDate = ({ responded, toRsvp }) => (
   <Container>
     <h1>31 / 10 / 2020</h1>
-    <h1>Save The Date!</h1>
-    <RsvpButton>
-      <button onClick={() => toRsvp()}>RSVP Now</button>
-      <img src={Arrows} alt="" />
-      <img className="mobile" src={MobileArrows} alt="" />
-    </RsvpButton>
+    <h1>{responded ? "Remember" : "Save"} The Date!</h1>
+    {responded ? (
+      <ChangeButton>
+        <button onClick={() => toRsvp()}>Change Reservation</button>
+      </ChangeButton>
+    ) : (
+      <RsvpButton>
+        <button onClick={() => toRsvp()}>RSVP Now</button>
+        <img src={Arrows} alt="" />
+        <img className="mobile" src={MobileArrows} alt="" />
+      </RsvpButton>
+    )}
   </Container>
 );

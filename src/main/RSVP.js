@@ -30,6 +30,10 @@ const AttendingButtonContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+
+  @media only screen and (min-width: 800px) {
+    flex-direction: row;
+  }
 `;
 
 const AttendingButton = styled.button`
@@ -82,9 +86,18 @@ const PlusOneContainer = styled.div`
   padding-bottom: 1em;
   width: 100%;
 
+  @media only screen and (min-width: 800px) {
+    width: 75%;
+  }
+
   div {
     display: flex;
     justify-content: center;
+
+    @media only screen and (min-width: 800px) {
+      flex-direction: row;
+      width: 50%;
+    }
   }
 `;
 
@@ -94,11 +107,16 @@ const InputContainer = styled.div`
   flex-direction: column;
   margin-bottom: 0.5em;
   margin-left: 0.5em;
-  width: 100%;
+  width: 95%;
+
+  span {
+    margin-right: 0.5em;
+    white-space: nowrap;
+  }
 
   input {
     font-size: 1em;
-    width: 85%;
+    width: 80%;
 
     @media only screen and (min-width: 800px) {
       padding: 10px;
@@ -214,7 +232,7 @@ const renderPlusOne = (plusOne, changePlusOne) => {
   return (
     <PlusOneContainer>
       <InputContainer>
-        First Name
+        <span>First Name</span>
         <input
           onChange={(e) => changePlusOne(e.target.value, "firstname")}
           placeholder="First name"
@@ -223,7 +241,7 @@ const renderPlusOne = (plusOne, changePlusOne) => {
         />
       </InputContainer>
       <InputContainer>
-        Last Name
+        <span>Last Name</span>
         <input
           onChange={(e) => changePlusOne(e.target.value, "lastname")}
           placeholder="Last name"

@@ -21,6 +21,7 @@ const renderBody = ({
   associates,
   attend,
   backToHome,
+  responded,
   rsvp,
   self,
   setPlusOne,
@@ -41,7 +42,7 @@ const renderBody = ({
   return (
     <div>
       <Header />
-      <SaveDate toRsvp={toRsvp} />
+      <SaveDate responded={responded} toRsvp={toRsvp} />
       <About />
       <Party />
       <Map />
@@ -230,11 +231,13 @@ class Main extends Component {
       unAttend,
     } = this;
     const { associates, isLoading, isLoggedIn, rsvp, self } = this.state;
+    const { responded } = this.state.self;
 
     const renderBodyParams = {
       associates,
       attend,
       backToHome,
+      responded,
       rsvp,
       self,
       setPlusOne,
