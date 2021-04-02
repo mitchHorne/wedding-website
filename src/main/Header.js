@@ -6,7 +6,7 @@ import mainImage from "../assets/main.jpg";
 
 const Container = styled.div`
   align-items: center;
-  background: no-repeat url(${props => props.mainImage});
+  background: no-repeat url(${(props) => props.mainImage});
   background-position: center;
   background-size: cover;
   display: flex;
@@ -14,7 +14,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100%;
 
-  @media only screen and (min-width: 1065px) {
+  @media only screen and (min-width: 800px) {
     background-size: 100%;
     background-position: top;
   }
@@ -30,7 +30,11 @@ const Cover = styled.div`
   left: 0;
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 101%;
+
+  @media only screen and (min-width: 800px) {
+    width: 100%;
+  }
 `;
 
 const Heading = styled.div`
@@ -42,9 +46,9 @@ const Heading = styled.div`
   h1 {
     background: -webkit-linear-gradient(
       right,
-      ${props => props.theme.colors.darkGold},
-      ${props => props.theme.colors.lightGold},
-      ${props => props.theme.colors.darkGold}
+      ${(props) => props.theme.colors.darkGold},
+      ${(props) => props.theme.colors.lightGold},
+      ${(props) => props.theme.colors.darkGold}
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -53,7 +57,7 @@ const Heading = styled.div`
     position: absolute;
     top: 6rem;
 
-    ${props => props.theme.fonts.accent};
+    ${(props) => props.theme.fonts.accent};
 
     @media only screen and (min-width: 800px) {
       display: block;
@@ -90,7 +94,7 @@ const HeaderAccent = styled.img`
 `;
 
 const SecondaryText = styled.div`
-  color: ${props => props.theme.colors.darkGold};
+  color: ${(props) => props.theme.colors.darkGold};
   font-size: 1.5rem;
   text-align: center;
 
@@ -100,15 +104,15 @@ const SecondaryText = styled.div`
     margin-left: 3rem;
   }
 
-  ${props => props.theme.fonts.accent};
+  ${(props) => props.theme.fonts.accent};
 
   h1,
   h2 {
     background: -webkit-linear-gradient(
       right,
-      ${props => props.theme.colors.darkGold},
-      ${props => props.theme.colors.lightGold},
-      ${props => props.theme.colors.darkGold}
+      ${(props) => props.theme.colors.darkGold},
+      ${(props) => props.theme.colors.lightGold},
+      ${(props) => props.theme.colors.darkGold}
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

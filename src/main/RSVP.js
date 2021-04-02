@@ -9,11 +9,27 @@ const Container = styled.div`
 
   ${(props) => props.theme.fonts.primary}
 
-  p {
-    padding: 0.5em 2em;
+  h1 {
     text-align: center;
-    width: 50%;
   }
+
+  p {
+    margin: 0;
+    padding: 0.5em 0;
+    text-align: center;
+    width: 90%;
+
+    @media only screen and (min-width: 800px) {
+      padding: 0.5em 2em;
+      width: 50%;
+    }
+  }
+`;
+
+const AttendingButtonContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 `;
 
 const AttendingButton = styled.button`
@@ -22,7 +38,7 @@ const AttendingButton = styled.button`
   border: 2px solid ${(props) => props.theme.colors.darkGold};
   color: ${(props) => (props.active ? "white" : props.theme.colors.darkGold)};
   font-size: 1em;
-  margin: 0.5em;
+  margin-bottom: 0.5em;
   padding: 0.5em;
   transition: 0.3s all;
   width: 232px;
@@ -30,13 +46,23 @@ const AttendingButton = styled.button`
   :hover {
     cursor: pointer;
   }
+
+  @media only screen and (min-width: 800px) {
+    margin: 0.5em;
+  }
 `;
 
 const Associations = styled.ul`
+  display: flex;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 50%;
+  width: 100%;
+
+  @media only screen and (min-width: 800px) {
+    width: 50%;
+  }
 
   h2 {
     margin: 0;
@@ -50,10 +76,11 @@ const Associations = styled.ul`
 `;
 
 const PlusOneContainer = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
   padding-bottom: 1em;
-  width: 50%;
+  width: 100%;
 
   div {
     display: flex;
@@ -62,21 +89,35 @@ const PlusOneContainer = styled.div`
 `;
 
 const InputContainer = styled.div`
-  align-items: center;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
   margin-bottom: 0.5em;
+  margin-left: 0.5em;
+  width: 100%;
 
   input {
     font-size: 1em;
-    margin-left: 0.5em;
-    padding: 10px;
-    flex-grow: 1;
+    width: 85%;
+
+    @media only screen and (min-width: 800px) {
+      padding: 10px;
+    }
+  }
+`;
+
+const AssociateItem = styled.li`
+  width: 80%;
+
+  h2 {
+    margin-bottom: 0.5em;
   }
 `;
 
 const BackIcon = styled.i`
   color: ${(props) => props.theme.colors.darkGold};
   left: 20px;
-  position: fixed;
+  position: absolute;
   top: 20px;
 
   :hover {
@@ -128,7 +169,7 @@ const renderHelloMessage = (responded, rsvp, plusOne) => {
 };
 
 const renderAttending = (attending, responded, setAttending) => (
-  <div>
+  <AttendingButtonContainer>
     <AttendingButton active={attending} onClick={() => setAttending(true)}>
       Attending
     </AttendingButton>
@@ -138,16 +179,16 @@ const renderAttending = (attending, responded, setAttending) => (
     >
       Not Attending
     </AttendingButton>
-  </div>
+  </AttendingButtonContainer>
 );
 
 const renderAssociates = (associates, changeAssociates) => {
   const persons = associates.map((person) => (
-    <li key={`ASSOCIATION_${person.id}`}>
+    <AssociateItem key={`ASSOCIATION_${person.id}`}>
       <h2>
         {person.firstName} {person.lastName}
       </h2>
-      <div>
+      <AttendingButtonContainer>
         <AttendingButton
           active={person.rsvp}
           onClick={() => changeAssociates({ id: person.id, coming: true })}
@@ -160,8 +201,8 @@ const renderAssociates = (associates, changeAssociates) => {
         >
           Not Attending
         </AttendingButton>
-      </div>
-    </li>
+      </AttendingButtonContainer>
+    </AssociateItem>
   ));
 
   return <Associations>{persons}</Associations>;
@@ -193,7 +234,7 @@ const renderPlusOne = (plusOne, changePlusOne) => {
       {!plusOne.firstname || !plusOne.lastname ? (
         ""
       ) : (
-        <div>
+        <AttendingButtonContainer>
           <AttendingButton
             active={plusOne.coming}
             onClick={() => changePlusOne(true, "coming")}
@@ -206,15 +247,15 @@ const renderPlusOne = (plusOne, changePlusOne) => {
           >
             Not Attending
           </AttendingButton>
-        </div>
+        </AttendingButtonContainer>
       )}
       {!plusOne.firstname || !plusOne.lastname ? (
         ""
       ) : (
-        <div>
+        <p>
           *If you should change your plus one's first or last name, be sure to
           click the attending button again to update it
-        </div>
+        </p>
       )}
     </PlusOneContainer>
   );

@@ -7,6 +7,7 @@ import { Loading } from "./Loader";
 import { Header } from "./Header";
 import { SaveDate } from "./SaveDate";
 import { About } from "./About";
+import { Party } from "./BridalParty";
 import { Map } from "./Map";
 import { RSVP } from "./RSVP";
 
@@ -42,6 +43,7 @@ const renderBody = ({
       <Header />
       <SaveDate toRsvp={toRsvp} />
       <About />
+      <Party />
       <Map />
     </div>
   );

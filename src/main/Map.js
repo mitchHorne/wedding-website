@@ -6,8 +6,12 @@ const Contaienr = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 2rem;
-  padding: 1rem 0 3em;
+  padding: 1rem 0 0;
   width: 100%;
+
+  @media only screen and (min-width: 800px) {
+    padding: 1rem 0 3em;
+  }
 
   i {
     color: ${(props) => props.theme.colors.darkGold};
