@@ -6,6 +6,7 @@ import { Login } from "./Login";
 import { Loading } from "./Loader";
 import { Header } from "./Header";
 import { SaveDate } from "./SaveDate";
+import { Music } from "./Music";
 import { About } from "./About";
 import { Party } from "./BridalParty";
 import { Map } from "./Map";
@@ -18,16 +19,31 @@ const MainBody = styled.div`
 `;
 
 const renderBody = ({
+  addedSongs,
+  addSong,
   associates,
   attend,
+  attending,
   backToHome,
+  music,
   responded,
   rsvp,
   self,
   setPlusOne,
+  songs,
+  toMusic,
   toRsvp,
   unAttend,
 }) => {
+  if (music)
+    return (
+      <Music
+        addedSongs={addedSongs}
+        addSong={addSong}
+        backToHome={backToHome}
+        songs={songs}
+      />
+    );
   if (rsvp)
     return (
       <RSVP
@@ -42,7 +58,12 @@ const renderBody = ({
   return (
     <div>
       <Header />
-      <SaveDate responded={responded} toRsvp={toRsvp} />
+      <SaveDate
+        attending={attending}
+        responded={responded}
+        toMusic={toMusic}
+        toRsvp={toRsvp}
+      />
       <About />
       <Party />
       <Map />
@@ -55,9 +76,11 @@ class Main extends Component {
     associates: [],
     isLoading: true,
     isLoggedIn: false,
+    music: false,
     pin: "",
     rsvp: false,
     self: {},
+    songs: [],
   };
 
   stopLoading = () => this.setState({ ...this.state, isLoading: false });
@@ -70,6 +93,7 @@ class Main extends Component {
     if (guest) {
       const data = JSON.parse(guest);
       this.login(data.self.id);
+      this.getSongs();
     }
   }
 
@@ -157,6 +181,7 @@ class Main extends Component {
 
       if (!success) throw Error("Failed in RSVP call");
 
+      this.login(this.state.self.id);
       return true;
     } catch (err) {
       console.log(err);
@@ -181,6 +206,62 @@ class Main extends Component {
 
       if (!success) throw Error("Failed in unRSVP call");
 
+      this.login(this.state.self.id);
+      return true;
+    } catch (err) {
+      console.log(err);
+    } finally {
+      this.stopLoading();
+    }
+  };
+
+  toMusic = () => {
+    window.scrollTo(0, 0);
+    this.setState({
+      ...this.state,
+      music: true,
+    });
+  };
+
+  getSongs = async () => {
+    const { url } = this.props;
+    this.startLoading();
+
+    try {
+      const options = { method: "GET" };
+      const res = await fetch(`${url}/getSongs`, options);
+
+      if (res.status !== 200) throw Error("Failed in getSongs call");
+
+      const songs = await res.json();
+      console.log(songs);
+      this.setState({ ...this.state, songs });
+
+      return true;
+    } catch (err) {
+      console.log(err);
+    } finally {
+      this.stopLoading();
+    }
+  };
+
+  addSong = async (song) => {
+    const { url } = this.props;
+    this.startLoading();
+
+    try {
+      const body = JSON.stringify({ id: this.state.self.id, song });
+      const options = { method: "POST", body };
+      const res = await fetch(`${url}/addSong`, options);
+
+      if (res.status !== 200) throw Error("Failed in Add song call");
+
+      const success = await res.json();
+
+      if (!success) throw Error("Failed in Add song call");
+
+      this.getSongs();
+      this.login(this.state.self.id);
       return true;
     } catch (err) {
       console.log(err);
@@ -216,31 +297,50 @@ class Main extends Component {
     window.scrollTo(0, 0);
     this.setState({
       ...this.state,
+      music: false,
       rsvp: false,
     });
   };
 
   render() {
     const {
+      addSong,
       attend,
       backToHome,
       loading,
       renderLogin,
+      toMusic,
       toRsvp,
       setPlusOne,
       unAttend,
     } = this;
-    const { associates, isLoading, isLoggedIn, rsvp, self } = this.state;
+    const {
+      associates,
+      isLoading,
+      isLoggedIn,
+      music,
+      rsvp,
+      self,
+      songs,
+    } = this.state;
     const { responded } = this.state.self;
+    const attending = this.state.self?.rsvp;
+    const addedSongs = this.state.self.songs;
 
     const renderBodyParams = {
+      addedSongs,
+      addSong,
       associates,
       attend,
+      attending,
       backToHome,
+      music,
       responded,
       rsvp,
       self,
       setPlusOne,
+      songs,
+      toMusic,
       toRsvp,
       unAttend,
     };

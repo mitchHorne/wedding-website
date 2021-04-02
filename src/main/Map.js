@@ -117,10 +117,6 @@ export const Map = () => {
           <i className="fa fa-map-marker fa-fw"></i>
           Address: 212 Boundary Rd, Cote de Val, Parys
         </p>
-        <p>
-          <i className="fa fa-phone fa-fw"></i>
-          Contact: 016 004 0019
-        </p>
       </div>
       <IFrame />
       {/* <AccomodationContainer>

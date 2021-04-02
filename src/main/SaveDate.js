@@ -30,27 +30,36 @@ const Container = styled.div`
 const ChangeButton = styled.div`
   align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 1rem;
   position: relative;
+  width: 75%;
 
   @media only screen and (min-width: 800px) {
+    flex-direction: row;
     padding: 1rem 2rem;
   }
 
   button {
     background: transparent;
-    border: 2px solid ${(props) => props.theme.colors.darkGold};
+    border: 1px solid ${(props) => props.theme.colors.darkGold};
+    border-radius: 20px;
     color: ${(props) => props.theme.colors.darkGold};
-    font-size: 2rem;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    padding: 0.5em 0;
     position: relative;
     transition: all 0.4s;
     top: 1rem;
+    width: 100%;
     z-index: 2;
 
     @media only screen and (min-width: 800px) {
-      font-size: 3rem;
+      margin-right: 0.5em;
+      font-size: 1.5rem;
       top: 0;
+      width: 30%;
     }
 
     :hover {
@@ -74,17 +83,20 @@ const RsvpButton = styled.div`
 
   button {
     background: transparent;
-    border: 2px solid ${(props) => props.theme.colors.darkGold};
+    border: 1px solid ${(props) => props.theme.colors.darkGold};
+    border-radius: 20px;
     color: ${(props) => props.theme.colors.darkGold};
-    font-size: 2rem;
+    font-size: 1.3em;
+    padding: 0.5em 1em;
     position: relative;
+    top: 20px;
     transition: all 0.4s;
-    top: 1rem;
     z-index: 2;
 
     @media only screen and (min-width: 800px) {
-      font-size: 3rem;
-      top: 0;
+      font-size: 2rem;
+    top: 8px;
+      width: 100%;
     }
 
     :hover {
@@ -119,13 +131,16 @@ const RsvpButton = styled.div`
 } 
 `;
 
-export const SaveDate = ({ responded, toRsvp }) => (
+export const SaveDate = ({ attending, responded, toMusic, toRsvp }) => (
   <Container>
     <h1>31 / 10 / 2020</h1>
     <h1>{responded ? "Remember" : "Save"} The Date!</h1>
     {responded ? (
       <ChangeButton>
-        <button onClick={() => toRsvp()}>Change Reservation</button>
+        <button onClick={() => toRsvp()}>Change Response</button>
+        {attending ? (
+          <button onClick={() => toMusic()}>Request a Song</button>
+        ) : null}
       </ChangeButton>
     ) : (
       <RsvpButton>
