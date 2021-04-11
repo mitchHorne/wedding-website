@@ -3,8 +3,12 @@ import styled from "styled-components";
 
 import Frame from "../assets/frame.png";
 
+import hot_1 from "../assets/Hot_1.jpg";
+import hot_2 from "../assets/Hot_2.jpg";
 import hot_3 from "../assets/Hot_3.png";
 
+import sergio_1 from "../assets/Sergio_1.jpg";
+import sergio_2 from "../assets/Sergio_2.jpg";
 import sergio_3 from "../assets/Sergio_3.jpg";
 
 import alpha_1 from "../assets/alpha_1.jpg";
@@ -208,15 +212,15 @@ export const Party = () => {
             alt=""
             onClick={() => toggleImage(hot_img, setHotImg)}
           />
-          <Portrait show={1 === hot_img} src={hot_3} alt="" />
-          <Portrait show={2 === hot_img} src={hot_3} alt="" />
-          <Portrait show={3 === hot_img} src={hot_3} alt="" />
+          <Portrait show={1 === hot_img} src={hot_1} alt="Hot_1" />
+          <Portrait show={2 === hot_img} src={hot_2} alt="Hot_2" />
+          <Portrait show={3 === hot_img} src={hot_3} alt="Hot_3" />
         </ImageContainer>
         <Desctiption>
           <h1>Simonne "Hot" de Beer</h1>
-          <h2>Maid of Honor</h2>
+          <h2>Maid of Honour</h2>
           <ul>
-            <ListItem gender="female">Runs on Crossfit and Sushi</ListItem>
+            <ListItem gender="female">Runs on CrossFit and Sushi</ListItem>
             <ListItem gender="female">Becomes very upset when not fed</ListItem>
             <ListItem gender="female">
               Might have any hair colour on a given day
@@ -247,9 +251,9 @@ export const Party = () => {
             alt=""
             onClick={() => toggleImage(alpha_img, setAlphaImg)}
           />
-          <Portrait show={1 === alpha_img} src={alpha_1} alt="" />
-          <Portrait show={2 === alpha_img} src={alpha_2} alt="" />
-          <Portrait show={3 === alpha_img} src={alpha_3} alt="" />
+          <Portrait show={1 === alpha_img} src={alpha_1} alt="Alpha_1" />
+          <Portrait show={2 === alpha_img} src={alpha_2} alt="Alpha_2" />
+          <Portrait show={3 === alpha_img} src={alpha_3} alt="Alpha_3" />
         </ImageContainer>
       </AboutContent>
       <AboutContent>
@@ -260,15 +264,15 @@ export const Party = () => {
             alt=""
             onClick={() => toggleImage(sergio_img, setsergioImg)}
           />
-          <Portrait show={1 === sergio_img} src={sergio_3} alt="" />
-          <Portrait show={2 === sergio_img} src={sergio_3} alt="" />
-          <Portrait show={3 === sergio_img} src={sergio_3} alt="" />
+          <Portrait show={1 === sergio_img} src={sergio_1} alt="Sergio_1" />
+          <Portrait show={2 === sergio_img} src={sergio_2} alt="Sergio_2" />
+          <Portrait show={3 === sergio_img} src={sergio_3} alt="Sergio_3" />
         </ImageContainer>
         <Desctiption>
           <h1>Sergio Oliveira</h1>
           <h2>Groomsman</h2>
           <ul>
-            <ListItem gender="male">Is fluent in Italian gesturing</ListItem>
+            <ListItem gender="male">Is fluent in Italian gestures</ListItem>
             <ListItem gender="male">Has the cooking gene</ListItem>
             <ListItem gender="male">Keeps Simonne happy (fed)</ListItem>
           </ul>
