@@ -56,7 +56,7 @@ export const Other = () => (
     <p>Donate towards our honeymoon plans (That s**t ain't cheap)</p>
     <p>Despise us and coming to our wedding just for the food?</p>
     <p>
-      No problem! Donate towards ouor honeymoon and send us far away from you!
+      No problem! Donate towards our honeymoon and send us far away from you!
     </p>
   </Container>
 );
