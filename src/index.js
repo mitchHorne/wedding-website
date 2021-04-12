@@ -8,7 +8,7 @@ import Dashboard from "./Dashboard";
 import "./index.css";
 import { theme } from "./theme";
 
-const serverUrl = "http://localhost:3001";
+const serverUrl = "https://wedding-server-t7jck.ondigitalocean.app";
 
 const Router = () => (
   <BrowserRouter>
