@@ -135,7 +135,7 @@ export const Header = () => (
       </Heading>
 
       <SecondaryText>
-        <h1>We're tying the knot!!</h1>
+        <h1>We're getting hitched!!</h1>
       </SecondaryText>
     </Cover>
   </Container>

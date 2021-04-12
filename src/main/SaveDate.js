@@ -133,7 +133,7 @@ const RsvpButton = styled.div`
 
 export const SaveDate = ({ attending, responded, toMusic, toRsvp }) => (
   <Container>
-    <h1>31 / 10 / 2020</h1>
+    <h1>30 / 10 / 2021</h1>
     <h1>{responded ? "Remember" : "Save"} The Date!</h1>
     {responded ? (
       <ChangeButton>
