@@ -21,7 +21,11 @@ const Modal = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 1rem 1rem 5rem;
-  width: 30%;
+  width: 75%;
+
+  @media only screen and (min-width: 800px) {
+    width: 30%:
+  }
 `;
 
 const TextBox = styled.input`
@@ -33,16 +37,16 @@ const TextBox = styled.input`
   width: 5rem;
 
   :hover {
-    border-bottom: 1px solid ${props => props.theme.colors.darkGold};
+    border-bottom: 1px solid ${(props) => props.theme.colors.darkGold};
   }
 
   :focus {
-    border-bottom: 1px solid ${props => props.theme.colors.darkGold};
+    border-bottom: 1px solid ${(props) => props.theme.colors.darkGold};
     outline: none;
   }
 `;
 
-export const Login = props => (
+export const Login = (props) => (
   <Container>
     <Modal>
       <h1>Enter your Pin</h1>
