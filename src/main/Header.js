@@ -99,9 +99,8 @@ const SecondaryText = styled.div`
   text-align: center;
 
   @media only screen and (min-width: 800px) {
-    align-self: flex-start;
+    align-self: center;
     font-size: 2.5rem;
-    margin-left: 3rem;
   }
 
   ${(props) => props.theme.fonts.accent};

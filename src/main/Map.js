@@ -95,9 +95,14 @@ export const Map = () => {
         <h2>Pont de Val</h2>
       </a>
       <div>
-        <p>
+        <p style={{ maxWidth: "800px" }}>
           <i className="fa fa-map-marker fa-fw"></i>
           Address: 212 Boundary Rd, Cote de Val, Parys
+        </p>
+        <p style={{ maxWidth: "800px" }}>
+          <i className="fa fa-hotel fa-fw"></i>
+          For accomodation arrangements at Pont de Val, please contact Nicolie,
+          as you cannot arrange with them directly
         </p>
       </div>
       <IFrame />
