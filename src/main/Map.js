@@ -101,7 +101,7 @@ export const Map = () => {
         </p>
         <p style={{ maxWidth: "800px" }}>
           <i className="fa fa-hotel fa-fw"></i>
-          For accomodation arrangements at Pont de Val, please contact Nicolie,
+          For accomodation arrangements at Pont de Val, please contact Nicoline,
           as you cannot arrange with them directly
         </p>
       </div>
