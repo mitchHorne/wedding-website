@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import MobileArrows from "../assets/mobile-arrow.png";
 import Arrows from "../assets/arrow.png";
 
 const Container = styled.div`
@@ -74,7 +73,7 @@ const RsvpButton = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
-  padding: 6rem 1rem;
+  padding: 1rem 1rem;
   position: relative;
 
   @media only screen and (min-width: 800px) {
@@ -146,7 +145,6 @@ export const SaveDate = ({ attending, responded, toMusic, toRsvp }) => (
       <RsvpButton>
         <button onClick={() => toRsvp()}>RSVP Now</button>
         <img src={Arrows} alt="" />
-        <img className="mobile" src={MobileArrows} alt="" />
       </RsvpButton>
     )}
   </Container>
