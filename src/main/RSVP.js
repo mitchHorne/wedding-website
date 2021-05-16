@@ -57,7 +57,9 @@ const AttendingButton = styled.button`
 `;
 
 const Associations = styled.ul`
+  align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   list-style: none;
   margin: 0;
